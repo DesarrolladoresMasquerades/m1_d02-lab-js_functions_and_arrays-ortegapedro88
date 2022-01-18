@@ -1,24 +1,68 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(a, b) {
+  if(a<=b){return b}
+  else {return a}
+}
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(arrWord) {
+  let posLong = 0
+  let longWord = 0
+  for( i = 0; i < arrWord.length; i++){
+    if(arrWord[i].length > longWord ) {
+      posLong = i
+      longWord = arrWord[i].length
+    }
+  }
+  if(arrWord.length === 0){return null} 
+  return arrWord[posLong]
+  
+}
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(numToSum) {
+  let sumTot = 0
+  if(numToSum.length === 0) return 0 
+  for(let i = 0; i < numToSum.length; i++){
+    sumTot = sumTot + numToSum[i]
+  } 
+ return sumTot
+}
 
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(numToSum) {
+  let sumTot = 0
+  if(numToSum.length === 0) return 0 
+  for(let i = 0; i < numToSum.length; i++){
+    switch(typeof(numToSum[i])){
+      case "number":
+        sumTot = sumTot + numToSum[i]
+        break;
+      case "boolean":
+        if(numToSum[i]=== true){sumTot = sumTot + 1}
+        break;
+      case "string":
+        sumTot = sumTot + numToSum[i].length
+        break;
+    
+      default:
+        throw new Error("Unsupported data type sir or ma'am")
+        break;
+    }
+  } 
+ return sumTot
+}
+
 
 
 
@@ -26,16 +70,68 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(myArr) {
+  if(myArr.length === 0) return null
+  let sumTot = 0 
+  for(let i = 0; i < myArr.length; i++){
+    sumTot = sumTot + myArr[i]
+  } 
+ return sumTot / myArr.length
+
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(numToSum) {
+  let sumTot = 0
+  if(numToSum.length === 0) return null 
+  for(let i = 0; i < numToSum.length; i++){
+    switch(typeof(numToSum[i])){
+      case "number":
+        sumTot = sumTot + numToSum[i]
+        break;
+      case "boolean":
+        if(numToSum[i]=== true){sumTot = sumTot + 1}
+        break;
+      case "string":
+        sumTot = sumTot + numToSum[i].length
+        break;
+    
+      default:
+        throw new Error("Unsupported data type sir or ma'am")
+        break;
+    }
+  } 
+ return sumTot / numToSum.length
+}
+ 
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(numToSum) {
+  
+  let sumTot = 0
+  if(numToSum.length === 0) return null 
+  for(let i = 0; i < numToSum.length; i++){
+    switch(typeof(numToSum[i])){
+      case "number":
+        sumTot = sumTot + numToSum[i]
+        break;
+      case "boolean":
+        if(numToSum[i]=== true){sumTot = sumTot + 1}
+        break;
+      case "string":
+        sumTot = sumTot + numToSum[i].length
+        break;
+    
+     // default:
+       // throw new Error("Unsupported data type sir or ma'am")
+        //break;
+    }
+  } 
+  return parseFloat((sumTot / numToSum.length).toFixed(2))
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -52,15 +148,30 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(myArr) {
+  let newArr = []
+  if(myArr.length == 0) return null
+  for(i = 0; i < myArr.length; i++){
+    if(newArr.indexOf(myArr[i]) == -1){
+      newArr.push(myArr[i])
+    }
+  }
+return newArr
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
-
+function doesWordExist(myArr, searchWord) {
+  if(myArr.length === 0) return null
+  for(i = 0; i < myArr.length; i++){
+    if(myArr[i] == searchWord) {return true}
+   
+   
+}return false
+}
 
 
 // Iteration #7: Count repetition
@@ -78,7 +189,17 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(myArr, searchWord) {
+  if(myArr.length === 0) return 0
+  let countWords = 0
+  for(i = 0; i < myArr.length; i++){
+    if(myArr[i] == searchWord) {
+      countWords++
+    }
+}return countWords
+}
+
+
 
 
 
@@ -106,7 +227,29 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(myMatrix) {
+  let maxCountX = 0
+  let currentCountX = 0
+  let maxCountY = 0
+  let currentCountY = 0
+
+  for(y = 0; y < myMatrix.length; y++){
+    for(x = 0; x < myMatrix.length; x++) {
+
+      if((x+3) < myMatrix[y].length){
+        currentCountX = (myMatrix[x][y]*myMatrix[x+1][y]*myMatrix[x+2][y]*myMatrix[x+3][y]);
+        if(currentCountX > maxCountX) {maxCountX = currentCountX}
+      }
+
+      if((y+3) < myMatrix[y].length){
+        currentCountY = (myMatrix[x][y]*myMatrix[x][y+1]*myMatrix[x][y+2]*myMatrix[x][y+3]);
+        if(currentCountY > maxCountY) {maxCountY = currentCountY}
+      }
+    }
+  }
+if(maxCountX <= maxCountY) return maxCountY
+return maxCountX
+}
 
 
 
